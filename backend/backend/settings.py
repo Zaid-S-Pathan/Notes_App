@@ -180,3 +180,7 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
+
+
+#Zaid@Supa123(database psswrd)
+#@d*zr*2p7-^%5ykpw0o8iop^b9(t=b6x5) (secret key)
