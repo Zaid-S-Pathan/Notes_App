@@ -96,10 +96,13 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if os.getenv("DATABASE_URL"):
+if DATABASE_URL:
+    # Parse the DATABASE_URL (pooler URL recommended)
     DATABASES = {
-        "default": dj_database_url.parse(os.getenv("DATABASE_URL")),
+        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
+
+    # Enforce SSL
     if not DEBUG:
         DATABASES['default']['OPTIONS'] = {
             'sslmode': 'require',
@@ -125,9 +128,9 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-#postgresql://postgres:Zaid@Supa123@db.qbmdybtetmjaujzlsuim.supabase.co:5432/postgres
-#postgresql://postgres.qbmdybtetmjaujzlsuim:Zaid@Supa123@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres
-
+#postgresql://postgres:Zaid%40Supa123@db.qbmdybtetmjaujzlsuim.supabase.co:5432/postgres
+#postgresql://postgres.qbmdybtetmjaujzlsuim:Zaid%40Supa123aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres
+#postgresql://postgres.qbmdybtetmjaujzlsuim:Zaid%40Supa123@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
