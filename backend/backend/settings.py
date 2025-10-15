@@ -104,20 +104,6 @@ if os.getenv("DATABASE_URL"):
         DATABASES['default']['OPTIONS'] = {
             'sslmode': 'require',
         }
-elif os.getenv("DB_NAME"):
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DB_NAME"),
-            "USER": os.getenv("DB_USER"),
-            "PASSWORD": os.getenv("DB_PWD"),
-            "HOST": os.getenv("DB_HOST", "localhost"),
-            "PORT": os.getenv("DB_PORT", "5432"),
-            "OPTIONS": {
-                "sslmode": "require"
-            } if not DEBUG else {},
-        }
-    }
 else:
     DATABASES = {
         "default": {
