@@ -99,8 +99,9 @@ WSGI_APPLICATION = "backend.wsgi.application"
 if os.getenv("DATABASE_URL"):
     DATABASES = {
         "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+        conn_max_age=600,      # persistent connections
+        ssl_require=True
     }
-    # Add SSL requirement for production databases
     if not DEBUG:
         DATABASES['default']['OPTIONS'] = {
             'sslmode': 'require',
