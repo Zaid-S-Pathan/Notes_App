@@ -96,16 +96,48 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# if os.getenv("DATABASE_URL"):
+#     DATABASES = {
+#         "default": dj_database_url.parse(os.getenv("DATABASE_URL")),
+#         conn_max_age:600,      # persistent connections
+#         ssl_require:True
+#     }
+#     if not DEBUG:
+#         DATABASES['default']['OPTIONS'] = {
+#             'sslmode': 'require',
+#         }
+# elif os.getenv("DB_NAME"):
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql",
+#             "NAME": os.getenv("DB_NAME"),
+#             "USER": os.getenv("DB_USER"),
+#             "PASSWORD": os.getenv("DB_PWD"),
+#             "HOST": os.getenv("DB_HOST", "localhost"),
+#             "PORT": os.getenv("DB_PORT", "5432"),
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": BASE_DIR / "db.sqlite3",
+#         }
+#     }
 if os.getenv("DATABASE_URL"):
     DATABASES = {
-        "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
-        conn_max_age=600,      # persistent connections
-        ssl_require=True
+        "default": dj_database_url.parse(
+            os.getenv("DATABASE_URL"),
+            conn_max_age=600,   # persistent connections
+            ssl_require=True
+        )
     }
+
     if not DEBUG:
         DATABASES['default']['OPTIONS'] = {
             'sslmode': 'require',
         }
+
 elif os.getenv("DB_NAME"):
     DATABASES = {
         "default": {
@@ -117,6 +149,7 @@ elif os.getenv("DB_NAME"):
             "PORT": os.getenv("DB_PORT", "5432"),
         }
     }
+
 else:
     DATABASES = {
         "default": {
