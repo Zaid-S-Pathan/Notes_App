@@ -98,14 +98,12 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 if os.getenv("DATABASE_URL"):
     DATABASES = {
-        "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+        "default": dj_database_url.parse(os.getenv("DATABASE_URL")),
     }
-    # Add SSL requirement and connection options for Supabase
     if not DEBUG:
         DATABASES['default']['OPTIONS'] = {
             'sslmode': 'require',
         }
-        DATABASES['default']['CONN_MAX_AGE'] = 600
 elif os.getenv("DB_NAME"):
     DATABASES = {
         "default": {
@@ -124,7 +122,6 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
