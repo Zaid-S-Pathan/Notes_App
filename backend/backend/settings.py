@@ -126,6 +126,8 @@ else:
         }
     }
 #postgresql://postgres:Zaid@Supa123@db.qbmdybtetmjaujzlsuim.supabase.co:5432/postgres
+#postgresql://postgres.qbmdybtetmjaujzlsuim:Zaid@Supa123@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
